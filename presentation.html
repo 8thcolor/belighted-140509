@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<link href="assets/38785450e9bdc107b7f43b3202b6bfdf.css" rel="stylesheet">
+<link href="assets/cbd95a3b7ed26f2a42b4c7dc0b0c598d.css" rel="stylesheet">
+<title>Code Quality, meh?!</title>
+<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+<section><h2>Code Quality, meh?!</h2>
+<p>Christophe Philemotte, Belighted, 9 May 2013</p>
+</section><section name="1">
+<h3>About me</h3>
+<ul>
+<li><p>Developer (<a href="https://github.com/toch">@toch on GitHub</a>, <a href="https://twitter.com/_toch">@_toch on Twitter</a>)</p></li>
+<li><p>Author on <a href="http://blog.8thcolor.com">blog.8thcolor.com</a></p></li>
+<li><p>CoFounder of PullReview <a href="https://pullreview.com">https://pullreview.com</a></p></li>
+</ul>
+</section><section name="2">
+<p><img src="assets/1a9e91d780e88d03f14ab575945696c7.png" alt="Mr Happy Man"></p>
+</section><section name="3">
+<blockquote><p>I hope to see Ruby help every programmer in the world to be productive, and to<br>
+enjoy programming, and to be happy. That is the primary purpose of Ruby<br>
+language.
+<strong>Matz, 2008</strong></p></blockquote>
+</section><section name="4">
+<blockquote><p>Code is like farts. It stinks if it isn&rsquo;t yours.</p></blockquote>
+</section><section name="5">
+<p><img src="assets/83a10d2f020f4e2fad33ced42e822344.jpg" alt="wtfpm"></p>
+</section><section name="6">
+<p><img src="assets/5ec984193e95bb7005685c6c26964043.jpg" alt="blured"></p>
+</section><section name="7">
+<p><img src="assets/e5d2c0d492f8e27c3879dbae489f6f65.jpg" alt="meh"></p>
+</section><section name="8">
+<p><img src="assets/21e74a98319f9d83ec04567ef1399570.jpg" alt="time and money"></p>
+</section><section name="9">
+<p><img src="assets/c85bdb858357dda4c52c86e3fb0e25c8.png" alt="tech debt"></p>
+</section><section name="10">
+<h3>For Developer</h3>
+<ul>
+<li><p>productivity / time</p></li>
+<li><p>confidence</p></li>
+</ul>
+</section><section name="11">
+<h3>For Company</h3>
+<ul>
+<li><p>money</p></li>
+<li><p>confidence</p></li>
+</ul>
+</section><section name="12">
+<h3>2 Aspects</h3>
+<ul>
+<li><p>Functional</p></li>
+<li><p>Structural</p></li>
+</ul>
+</section><section name="13">
+<h3>Functional</h3>
+<p>How it complies to the:</p>
+<ul>
+<li><p>user stories</p></li>
+<li><p>specs</p></li>
+<li><p>functionalities</p></li>
+<li><p>requirements</p></li>
+</ul>
+</section><section name="14">
+<h3>Structural</h3>
+<ul>
+<li><p>Reliability</p></li>
+<li><p>Efficiency</p></li>
+<li><p>Security</p></li>
+<li><p>Maintainability</p></li>
+<li><p>Size</p></li>
+</ul>
+</section><section name="15">
+<h3>How to check them?</h3>
+</section><section name="16">
+<p><img src="assets/60965d97428799c5ca0542cdc8a638d8.jpg" alt="Safety Nets"></p>
+</section><section name="17">
+<ul>
+<li><p>Tests</p></li>
+<li><p>_</p></li>
+<li><p>_</p></li>
+</ul>
+</section><section name="18">
+<ul>
+<li><p>Tests</p></li>
+<li><p>Code Review</p></li>
+<li><p>_</p></li>
+</ul>
+</section><section name="19">
+<ul>
+<li><p>Tests</p></li>
+<li><p>Code Review</p></li>
+<li><p>Static Analysis</p></li>
+</ul>
+</section><section name="20">
+<h3>What can we measure with Static Analysis?</h3>
+</section><section name="21">
+<ul>
+<li><p>Reliability</p></li>
+<li><p>(Efficiency)</p></li>
+<li><p>Security</p></li>
+<li><p>Maintainability</p></li>
+<li><p>Size</p></li>
+</ul>
+</section><section name="22">
+<h3>How can we measure?</h3>
+</section><section name="23">
+<ul>
+<li><p>Complexity</p></li>
+<li><p>Duplication</p></li>
+<li><p>Code Style</p></li>
+<li><p>Test infection</p></li>
+<li><p>Suspicious constructs / Flaws</p></li>
+<li><p>Code Smells</p></li>
+<li><p>Best Practices</p></li>
+<li><p>Security</p></li>
+</ul>
+</section><section name="24">
+<h3>Complexity</h3>
+</section><section name="25">
+<blockquote><p>How complex it is to understand and modify your code.</p></blockquote>
+</section><section name="26">
+<p>It&rsquo;s correlated to the number of bugs.</p>
+</section><section name="27">
+<pre><code>def hello_world
+ puts "Hello world"
+end
+</code></pre>
+<p><img src="assets/f50105333e76b47e6de9033cb03b0c0c.png" alt="complexity 1"></p>
+</section><section name="28">
+<pre><code>def hello(name)
+ if name
+    puts "Hello #{name}"
+ end
+end
+</code></pre>
+<p><img src="assets/75a288fe30bc5faf0aba489ccb223dce.png" alt="complexity 2"></p>
+</section><section name="29">
+<pre><code>def hello(name)
+ return unless name
+ puts "Hello #{name}"
+end
+</code></pre>
+<p><img src="assets/46a98f840b409c6665361955c3fb11d6.png" alt="complexity 3"></p>
+</section><section name="30">
+<h3>Duplication</h3>
+</section><section name="31">
+<p><img src="assets/679b73af47f22ab0cb9bfa7e75b155ec.jpg" alt="Copy Paste"></p>
+</section><section name="32">
+<p>It&rsquo;s correlated to the number of bugs.</p>
+</section><section name="33">
+<h3>Code Style</h3>
+</section><section name="34">
+<p><img src="assets/6f1820c61070b6b472cba8aa5553999f.gif" alt="obfuscated"></p>
+</section><section name="35">
+<h3>Test infection</h3>
+</section><section name="36">
+<p><img src="assets/03146272a710c798f4a7bdf35d94939c.jpg" alt="infection"></p>
+</section><section name="37">
+<p>To find untested code</p>
+</section><section name="38">
+<h3>Suspicious constructs / Flaws</h3>
+<h3>Code Smells</h3>
+<h3>Best Practices</h3>
+</section><section name="39">
+<p><img src="assets/b322c8104b9f305f11c005e59c85aee2.jpg" alt="suspicious"></p>
+
+</section><section name="40">
+<h3>Security</h3>
+</section><section name="41">
+<p><img src="assets/08605e397f471f4c813ae1dd44bbb924.jpg" alt="security"></p>
+</section><section name="42">
+<h1>Thanks! Questions?</h1></section>
+</div></div>
+<script src="assets/8244e91e3efc1ad6285d9beb8125fe4b.js" type="text/javascript"></script><script src="assets/15cf8d7f8a9b02264e443d28141a5fdf.js" type="text/javascript"></script><script>Reveal.initialize({ dependencies: [], local:true,history:true });</script>
+</body>
+</html>
